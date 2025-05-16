@@ -1,0 +1,8 @@
+set terminal pngcairo
+set title "time complexity for quick sort"
+set autoscale
+set xlabel "size of input"
+set ylabel "sorting time (ms)"
+set grid
+set output "lab10.png"
+plot "lab10.dat" with linespoints title "QuickSort"
