@@ -8,7 +8,6 @@ void selectionSort(int arr[], int n)
     for (i = 0; i < n - 1; i++)
     {
         min_idx = i;
-
         for (j = i + 1; j < n; j++)
         {
             if (arr[j] < arr[min_idx])
@@ -16,7 +15,6 @@ void selectionSort(int arr[], int n)
                 min_idx = j;
             }
         }
-
         int temp = arr[min_idx];
         arr[min_idx] = arr[i];
         arr[i] = temp;
@@ -25,28 +23,38 @@ void selectionSort(int arr[], int n)
 
 int main()
 {
-    int n, i;
-    clock_t start, end;
-    double cpu_time_used;
+    srand(time(NULL));
     int sizes[] = {5000, 10000, 15000, 20000, 25000};
+    int num_sizes = sizeof(sizes) / sizeof(sizes[0]);
 
-    for (i = 0; i < sizeof(sizes) / sizeof(sizes[0]); i++)
+    FILE *fp = fopen("lab9.dat", "w");
+    if (fp == NULL)
     {
-        n = sizes[i];
-        int arr[n];
-        srand(time(NULL));
+        printf("Failed to create data file.\n");
+        return 1;
+    }
 
+    printf("n\tTime (ms)\n");
+
+    for (int i = 0; i < num_sizes; i++)
+    {
+        int n = sizes[i];
+        int *arr = (int *)malloc(n * sizeof(int));
         for (int j = 0; j < n; j++)
         {
             arr[j] = rand();
         }
 
-        start = clock();
+        clock_t start = clock();
         selectionSort(arr, n);
-        end = clock();
+        clock_t end = clock();
 
-        cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-        printf("Time taken to sort array of size %d: %f seconds\n", n, cpu_time_used);
+        double time_ms = ((double)(end - start)) * 1000.0 / CLOCKS_PER_SEC;
+        printf("%d\t%.2f\n", n, time_ms);
+        fprintf(fp, "%d\t%.2f\n", n, time_ms);
+        free(arr);
     }
+
+    fclose(fp);
     return 0;
 }
