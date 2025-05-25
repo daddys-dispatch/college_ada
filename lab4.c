@@ -1,42 +1,70 @@
+// Dijkstra's Algorithm
 #include <stdio.h>
-#define INF 999
-void dijkstra(int c[10][10], int n, int s, int d[10])
+#include <stdlib.h>
+
+int n, source, cost[10][10], dist[10], visited[10] = {0};
+
+void dijkstra(int source)
 {
-    int v[10], min, u, i, j;
-    for (i = 1; i <= n; i++)
+    for (int i = 0; i < n; i++)
+        dist[i] = cost[source][i];
+
+    dist[source] = 0;
+    visited[source] = 1;
+
+    for (int i = 1; i < n; i++)
     {
-        d[i] = c[s][i];
-        v[i] = 0;
-    }
-    v[s] = 1;
-    for (i = 1; i <= n; i++)
-    {
-        min = INF;
-        for (j = 1; j <= n; j++)
-            if (v[j] == 0 && d[j] < min)
+        int min = 999, u = -1;
+
+        for (int j = 0; j < n; j++)
+            if (!visited[j] && dist[j] < min)
             {
-                min = d[j];
+                min = dist[j];
                 u = j;
             }
-        v[u] = 1;
-        for (j = 1; j <= n; j++)
-            if (v[j] == 0 && (d[u] + c[u][j]) < d[j])
-                d[j] = d[u] + c[u][j];
+
+        if (u == -1)
+            break;
+        visited[u] = 1;
+
+        for (int v = 0; v < n; v++)
+            if (!visited[v] && cost[u][v] != 999)
+                if (dist[v] > dist[u] + cost[u][v])
+                    dist[v] = dist[u] + cost[u][v];
     }
 }
-int main()
+
+void main()
 {
-    int c[10][10], d[10], i, j, s, sum, n;
-    printf("\nEnter n value:");
+    printf("Enter the number of vertices: "); // 4
     scanf("%d", &n);
-    printf("\nEnter the graph data:\n");
-    for (i = 1; i <= n; i++)
-        for (j = 1; j <= n; j++)
-            scanf("%d", &c[i][j]);
-    printf("\nEnter the souce node:");
-    scanf("%d", &s);
-    dijkstra(c, n, s, d);
-    for (i = 1; i <= n; i++)
-        printf("\nShortest distance from %d to %d is %d", s, i, d[i]);
-    return 0;
+
+    printf("\nEnter the cost matrix:\n");
+    // 2 4 6 8
+    // 7 9 7 23
+    // 54 6 8 3
+    // 21 4 6 9
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%d", &cost[i][j]);
+
+    printf("\nEnter the source vertex: ", n - 1); // 2
+    scanf("%d", &source);
+
+    if (source < 0 || source >= n)
+    {
+        printf("Invalid source vertex\n");
+        EXIT_FAILURE;
+    }
+
+    dijkstra(source);
+
+    printf("\nThe shortest distance is", source);
+    for (int i = 0; i < n; i++)
+    {
+        if (dist[i] == 999)
+            printf("No path from %d to %d\n", source, i);
+        else
+            printf("Cost from %d to %d is %d\n", source, i, dist[i]);
+    }
 }

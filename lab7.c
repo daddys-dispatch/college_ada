@@ -1,52 +1,54 @@
+// Discrete & Continuous Knapsack
 #include <stdio.h>
+
 int n, m, p[10], w[10];
-void greedy_knapsack()
+
+void greedyKnapsack()
 {
-    float max, profit = 0;
-    int k = 0, i, j;
-    printf("Item included is:");
-    for (i = 0; i < n; i++)
+    int k = 0;
+    float profit = 0, maxRatio;
+
+    printf("\nItems included: ");
+    for (int i = 0; i < n; i++)
     {
-        max = 0;
-        for (j = 0; j < n; j++)
-        {
-            if ((float)p[j] / w[j] > max)
+        maxRatio = 0;
+        for (int j = 0; j < n; j++)
+            if (p[j] != 0 && (float)p[j] / w[j] > maxRatio)
             {
+                maxRatio = (float)p[j] / w[j];
                 k = j;
-               max = ((float)p[j] / w[j]);
             }
-        }
+
         if (w[k] <= m)
         {
-            printf("%d\t", k);
-            m = m - w[k];
-            profit = profit + p[k];
+            printf("%d ", k);
+            m -= w[k];
+            profit += p[k];
             p[k] = 0;
         }
         else
             break;
     }
-    printf("\nDicrete knapsack profit: %f\n", profit);
-    printf("Continous knapsack also includes item %d with portion: %f\n", k, ((float)m) / w[k]);
-    profit = profit + ((float)m) / w[k] * p[k];
-    printf("Continous knapsack profit: %f \n", profit);
+
+    printf("\nDiscrete knapsack profit: %.2f", profit);
+    printf("\nContinuous knapsack profit: %.2f\n", profit += ((float)m / w[k]) * p[k]);
 }
-int main()
+
+void main()
 {
-    int i;
-    printf("Enter the no of items: ");
+    printf("Enter number of items: "); // 3
     scanf("%d", &n);
 
-    printf("Enter the weight of n items: ");
-    for (i = 0; i < n; i++)
+    printf("Enter weights: "); // 2 1 1
+    for (int i = 0; i < n; i++)
         scanf("%d", &w[i]);
 
-    printf("Enter the prices of n items : ");
-    for (i = 0; i < n; i++)
+    printf("Enter prices: "); // 0 1 1
+    for (int i = 0; i < n; i++)
         scanf("%d", &p[i]);
 
-    printf("Enter the capacity of knapsack: ");
+    printf("Enter knapsack capacity: "); // 5
     scanf("%d", &m);
 
-    greedy_knapsack();
+    greedyKnapsack();
 }

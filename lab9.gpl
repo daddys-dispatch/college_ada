@@ -1,8 +1,8 @@
 set terminal pngcairo
 set title "Time Complexity for Selection Sort"
 set autoscale
-set xlabel "Size of Input"
-set ylabel "Sorting Time (ms)"
+set xlabel "Array Size"
+set ylabel "Time Taken (ms)"
 set grid
 set output "lab9.png"
 plot "lab9.dat" using 1:2 with linespoints title "Selection Sort"

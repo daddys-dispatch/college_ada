@@ -1,42 +1,36 @@
-// Kurshal's Algorithm
 #include <stdio.h>
 
-void main()
-{
-    int min_cost = 0, ne = 1;
-    int n, cost[20][20], parent[20];
+int ne = 1, min_cost = 0;
 
-    printf("Enter the number of vertices: "); // 6
+void main() {
+    int n, i, j, w, min, a, u, b, v;
+    int cost[20][20], parent[20];
+
+    printf("Enter the number of vertices: ");
     scanf("%d", &n);
 
     printf("\nEnter the cost matrix:\n");
-    // 23 34 56 78 34 12
-    // 11 33 78 899 89 34
-    // 222 44 66 87 98 444
-    // 11 33 44 76 54 22
-    // 14 56 78 89 90 54
-    // 12 45 67 89 65 46
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
+    for (i = 1; i <= n; i++)
+        for (j = 1; j <= n; j++)
             scanf("%d", &cost[i][j]);
 
-    for (int i = 1; i <= n; i++)
+    for (i = 1; i <= n; i++)
         parent[i] = 0;
 
     printf("\nThe edges of Spanning tree are\n");
 
-    while (ne < n)
-    {
-        int a, b, u, v, min = 999;
+    while (ne < n) {
+        int min = 999;
 
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
-                if (cost[i][j] < min)
-                {
+        for (i = 1; i <= n; i++) {
+            for (j = 1; j <= n; j++) {
+                if (cost[i][j] < min) {
                     min = cost[i][j];
                     a = u = i;
                     b = v = j;
                 }
+            }
+        }
 
         while (parent[u])
             u = parent[u];
@@ -44,8 +38,7 @@ void main()
         while (parent[v])
             v = parent[v];
 
-        if (u != v)
-        {
+        if (u != v) {
             printf("Edge %d\t(%d -> %d) = %d\n", ne++, a, b, min);
             min_cost += min;
             parent[v] = u;
