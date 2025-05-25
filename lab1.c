@@ -49,25 +49,3 @@ void main() {
 
     printf("\nMinimum cost = %d\n", min_cost);
 }
-
-/*
-Algorithm : Kruskal(G)
-// Kruskal’s algorithm for constructing a minimum spanning tree
-// Input: A weighted connected graph G = (V, E)
-// Output: ET, the set of edges composing a minimum spanning tree of G
-{
-    Sort E in non-decreasing order of the edge weights w(e1) <= ... <= w(e|E|)
-    ET ← ∅ ; ecounter ← 0 // Initialize the set of tree edges and its size
-    k ← 0                 // Initialize the number of processed edges
-    while ecounter < |V| - 1 do
-    {
-        k ← k + 1
-        if ET ∪ {ek} is acyclic
-        {
-            ET ← ET ∪ {ek}
-            ecounter ← ecounter + 1
-        }
-    }
-    return ET
-}
-*/
