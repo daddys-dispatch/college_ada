@@ -18,6 +18,8 @@ void main() {
         parent[i] = 0;
 
     printf("\nThe edges of Spanning tree are\n");
+
+    // Kruskal's algorithm begins
     while (ne < n) {
         min = 999;
 
@@ -45,6 +47,7 @@ void main() {
 
         cost[a][b] = cost[b][a] = 999;
     }
+    // Kruskal's algorithm ends
 
     printf("\nMinimum cost = %d\n", min_cost);
 }
