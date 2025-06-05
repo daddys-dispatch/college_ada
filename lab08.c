@@ -26,17 +26,17 @@ void sumOfSubset(int p, int k, int r)
 void main()
 {
     int n, sum = 0;
-    printf("Enter number of elements: ");
+    printf("Number of elements: "); // 5
     scanf("%d", &n);
 
-    printf("Enter the elements in increasing order: ");
+    printf("Elements in increasing order: "); // 1 2 3 4 5
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &s[i]);
         sum += s[i];
     }
 
-    printf("Required Sum: ");
+    printf("Required Sum: "); // 8
     scanf("%d", &d);
 
     if (sum < d || s[0] > d)

@@ -1,21 +1,7 @@
+// Merge Sort
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-void mergeSort(int arr[], int low, int high);
-void merge(int arr[], int low, int mid, int high);
-double timeMergeSort(int arr[], int n);
-
-void mergeSort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        int mid = (low + high) / 2;
-        mergeSort(arr, low, mid);
-        mergeSort(arr, mid + 1, high);
-        merge(arr, low, mid, high);
-    }
-}
 
 void merge(int arr[], int low, int mid, int high)
 {
@@ -31,7 +17,6 @@ void merge(int arr[], int low, int mid, int high)
         R[j] = arr[mid + 1 + j];
 
     int i = 0, j = 0, k = low;
-
     while (i < n1 && j < n2)
     {
         if (L[i] <= R[j])
@@ -65,6 +50,17 @@ void merge(int arr[], int low, int mid, int high)
     free(R);
 }
 
+void mergeSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int mid = (low + high) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
+}
+
 double timeMergeSort(int arr[], int n)
 {
     clock_t start = clock();
@@ -73,7 +69,7 @@ double timeMergeSort(int arr[], int n)
     return ((double)(end - start)) * 1000.0 / CLOCKS_PER_SEC;
 }
 
-int main()
+void main()
 {
     srand(time(NULL));
     int step = 500;
@@ -82,11 +78,10 @@ int main()
     if (fp == NULL)
     {
         printf("Failed to create data file.\n");
-        return 1;
+        EXIT_FAILURE;
     }
 
     printf("n\tTime (ms)\n");
-
     for (int n = 5000; n <= 10000; n += step)
     {
         double totalTime = 0.0;
@@ -109,5 +104,4 @@ int main()
     }
 
     fclose(fp);
-    return 0;
 }

@@ -6,10 +6,10 @@ void main()
     int min_cost = 0, ne = 1;
     int n, cost[20][20], parent[20];
 
-    printf("Enter the number of vertices: "); // 6
+    printf("Number of vertices: "); // 6
     scanf("%d", &n);
 
-    printf("\nEnter the cost matrix:\n");
+    printf("\nCost matrix:\n");
     // 23 34 56 78 34 12
     // 11 33 78 899 89 34
     // 222 44 66 87 98 444
@@ -23,8 +23,7 @@ void main()
     for (int i = 1; i <= n; i++)
         parent[i] = 0;
 
-    printf("\nThe edges of Spanning tree are\n");
-
+    printf("\nEdges of spanning tree:\n");
     while (ne < n)
     {
         int a, b, u, v, min = 999;

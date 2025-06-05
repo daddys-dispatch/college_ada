@@ -6,10 +6,10 @@ void main()
     int min_cost = 0, ne = 1;
     int n, source, cost[20][20], visited[20];
 
-    printf("Enter the number of nodes: "); // 4
+    printf("Number of nodes: "); // 4
     scanf("%d", &n);
 
-    printf("\nEnter the cost matrix:\n");
+    printf("\nCost matrix:\n");
     // 23 567 1 4
     // 34 3 67 999
     // 2 4 65 34
@@ -21,7 +21,7 @@ void main()
     for (int i = 1; i <= n; i++)
         visited[i] = 0;
 
-    printf("\nEnter the root node: "); // 1
+    printf("\nRoot node: "); // 1
     scanf("%d", &source);
     visited[source] = 1;
 

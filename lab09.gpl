@@ -4,5 +4,5 @@ set autoscale
 set xlabel "Array Size"
 set ylabel "Time Taken (ms)"
 set grid
-set output "lab9.png"
-plot "lab9.dat" using 1:2 with linespoints title "Selection Sort"
+set output "lab09.png"
+plot "lab09.dat" using 1:2 with linespoints title "Selection Sort"

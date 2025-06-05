@@ -36,18 +36,18 @@ void greedyKnapsack()
 
 void main()
 {
-    printf("Enter number of items: "); // 3
+    printf("Number of items: "); // 3
     scanf("%d", &n);
 
-    printf("Enter weights: "); // 2 1 1
+    printf("Weights: "); // 2 1 1
     for (int i = 0; i < n; i++)
         scanf("%d", &w[i]);
 
-    printf("Enter prices: "); // 0 1 1
+    printf("Prices: "); // 0 1 1
     for (int i = 0; i < n; i++)
         scanf("%d", &p[i]);
 
-    printf("Enter knapsack capacity: "); // 5
+    printf("Knapsack capacity: "); // 5
     scanf("%d", &m);
 
     greedyKnapsack();

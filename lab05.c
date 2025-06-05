@@ -15,7 +15,7 @@ void computeColSum()
 
 void topoSort()
 {
-    printf("\nTopological Ordering: ");
+    printf("\nTopological ordering: ");
     for (int i = 0; i < n; i++)
     {
         computeColSum();
@@ -36,13 +36,13 @@ void topoSort()
 
 void main()
 {
-    printf("Enter the number of vertices: "); // 5
+    printf("Number of vertices: "); // 5
     scanf("%d", &n);
 
     if (n < 1 || n > 10)
-        printf("Invalid number of vertices. Please enter a number between 1 and 10.\n");
+        printf("Invalid. Number should be [1, 10]\n");
 
-    printf("\nEnter the cost matrix:\n");
+    printf("\nCost matrix:\n");
     // 0 1 1 0 0
     // 0 0 0 1 1
     // 0 0 0 1 0

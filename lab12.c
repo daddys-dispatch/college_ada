@@ -46,7 +46,7 @@ void main()
 {
     int n;
 
-    printf("Size of Chess Board: ");
+    printf("Size of chess board: "); // 4
     scanf("%d", &n);
 
     printf("\nNumber of possibilities: %d\n", nQueens(n));

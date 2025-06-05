@@ -21,7 +21,7 @@ void main()
 {
     srand(time(NULL));
     int sizes[] = {5000, 10000, 15000, 20000, 25000};
-    FILE *fp = fopen("lab9.dat", "w");
+    FILE *fp = fopen("lab09.dat", "w");
     if (!fp)
     {
         printf("Failed to create data file.\n");

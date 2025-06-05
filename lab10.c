@@ -1,13 +1,14 @@
+// Quick Sort
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
 
-void fnGenRandInput(int[], int);
-int fnPartition(int[], int, int);
-void fnQuickSort(int[], int, int);
-void fnSwap(int *, int *);
-double timeQuickSort(int[], int);
+// void fnGenRandInput(int[], int);
+// int fnPartition(int[], int, int);
+// void fnQuickSort(int[], int, int);
+// void fnSwap(int *, int *);
+// double timeQuickSort(int[], int);
 
 void fnSwap(int *a, int *b)
 {
@@ -18,10 +19,11 @@ void fnSwap(int *a, int *b)
 
 int fnPartition(int a[], int l, int r)
 {
-    int i, j;
-    int p = a[l];
+    int i, j, p = a[l];
+
     i = l;
     j = r + 1;
+
     do
     {
         do
@@ -34,6 +36,7 @@ int fnPartition(int a[], int l, int r)
         } while (a[j] > p);
         fnSwap(&a[i], &a[j]);
     } while (i < j);
+
     fnSwap(&a[i], &a[j]);
     fnSwap(&a[l], &a[j]);
     return j;
@@ -41,10 +44,9 @@ int fnPartition(int a[], int l, int r)
 
 void fnQuickSort(int a[], int l, int r)
 {
-    int s;
     if (l < r)
     {
-        s = fnPartition(a, l, r);
+        int s = fnPartition(a, l, r);
         fnQuickSort(a, l, s - 1);
         fnQuickSort(a, s + 1, r);
     }
@@ -62,6 +64,7 @@ double timeQuickSort(int arr[], int n)
 {
     struct timeval tv;
     double start, end;
+
     gettimeofday(&tv, NULL);
     start = tv.tv_sec + (tv.tv_usec / 1000000.0);
     fnQuickSort(arr, 0, n - 1);
@@ -70,7 +73,7 @@ double timeQuickSort(int arr[], int n)
     return (end - start) * 1000.0;
 }
 
-int main()
+void main()
 {
     srand(time(NULL));
     int step = 500;
@@ -79,11 +82,10 @@ int main()
     if (fp == NULL)
     {
         printf("Error opening file!\n");
-        return 1;
+        EXIT_FAILURE;
     }
 
     printf("n\tTime (ms)\n");
-
     for (int n = 5000; n <= 10000; n += step)
     {
         double totalTime = 0.0;
@@ -100,5 +102,4 @@ int main()
     }
 
     fclose(fp);
-    return 0;
 }

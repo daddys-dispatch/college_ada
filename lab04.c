@@ -36,10 +36,10 @@ void dijkstra(int source)
 
 void main()
 {
-    printf("Enter the number of vertices: "); // 4
+    printf("Number of vertices: "); // 4
     scanf("%d", &n);
 
-    printf("\nEnter the cost matrix:\n");
+    printf("\nCost matrix:\n");
     // 2 4 6 8
     // 7 9 7 23
     // 54 6 8 3
@@ -48,7 +48,7 @@ void main()
         for (int j = 0; j < n; j++)
             scanf("%d", &cost[i][j]);
 
-    printf("\nEnter the source vertex: ", n - 1); // 2
+    printf("\nSource vertex: ", n - 1); // 2
     scanf("%d", &source);
 
     if (source < 0 || source >= n)
@@ -59,7 +59,7 @@ void main()
 
     dijkstra(source);
 
-    printf("\nThe shortest distance is", source);
+    printf("\nShortest distance:", source);
     for (int i = 0; i < n; i++)
     {
         if (dist[i] == 999)
